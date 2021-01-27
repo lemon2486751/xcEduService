@@ -1,8 +1,10 @@
 package com.xuecheng.manage_cms.service;
 
 import com.xuecheng.framework.domain.cms.CmsPage;
+import com.xuecheng.framework.domain.cms.response.CmsCode;
 import com.xuecheng.framework.domain.cms.response.CmsPageResult;
 import com.xuecheng.framework.domain.request.QueryPageRequest;
+import com.xuecheng.framework.exception.CustomException;
 import com.xuecheng.framework.model.response.*;
 import com.xuecheng.manage_cms.dao.CmsPageRepository;
 import org.apache.commons.lang.StringUtils;
@@ -81,7 +83,7 @@ public class CmsPageService {
             CmsPage save = repository.save(cmsPage);
             return new CmsPageResult(CommonCode.SUCCESS, cmsPage);
         } else {
-            return new CmsPageResult(CommonCode.FAIL, null);
+            throw new CustomException(CmsCode.CMS_ADDPAGE_EXISTS);
         }
 
     }
