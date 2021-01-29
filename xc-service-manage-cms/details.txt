@@ -1,0 +1,5 @@
+页面预览实现详解：
+1.通过测试类手动将模板文件存入gridFs
+2.pageId --> cmsPage --> dataUrl  ：数据
+                     --> templateid --> cmsTemplate --> templateFileId --> GridFsFile ：模板
+3.freemarker静态化技术生成html页面
