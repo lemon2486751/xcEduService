@@ -49,4 +49,11 @@ public interface CmsPageControllerApi {
      * @return
      */
     ResponseResult delete(String id);
+
+    /**
+     * 发布页面
+     * @param pageId
+     * @return
+     */
+    ResponseResult postPage(String pageId);
 }

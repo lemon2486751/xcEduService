@@ -3,7 +3,7 @@ package com.xuecheng.manage_cms;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSDownloadStream;
 import com.mongodb.client.gridfs.model.GridFSFile;
-import com.xuecheng.manage_cms.service.CmsPageService;
+import com.xuecheng.manage_cms.service.PageService;
 import org.apache.commons.io.IOUtils;
 import org.bson.types.ObjectId;
 import org.junit.Test;
@@ -15,7 +15,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import sun.nio.ch.IOUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,7 +35,7 @@ public class TestFreemarker {
     GridFSBucket gridFSBucket;
 
     @Autowired
-    CmsPageService cmsPageService;
+    PageService pageService;
 
     @Test
     public void testGridFs() throws FileNotFoundException {
@@ -67,7 +66,7 @@ public class TestFreemarker {
 
     @Test
     public void getPageHtmlTest(){
-        String html = cmsPageService.getPageHtml("6013cfcb91a51f04ec1f5aaf");
+        String html = pageService.getPageHtml("6013cfcb91a51f04ec1f5aaf");
         System.out.println(html);
     }
 }

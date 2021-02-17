@@ -4,15 +4,12 @@ import com.xuecheng.api.controller.CmsPageControllerApi;
 import com.xuecheng.framework.domain.cms.CmsPage;
 import com.xuecheng.framework.domain.cms.response.CmsPageResult;
 import com.xuecheng.framework.domain.request.QueryPageRequest;
+import com.xuecheng.framework.model.response.CommonCode;
 import com.xuecheng.framework.model.response.QueryResponseResult;
 import com.xuecheng.framework.model.response.ResponseResult;
-import com.xuecheng.manage_cms.service.CmsPageService;
-import org.apache.commons.lang.StringUtils;
+import com.xuecheng.manage_cms.service.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.ServletOutputStream;
-import java.rmi.server.RemoteCall;
 
 /**
  * @author lemon
@@ -22,7 +19,7 @@ import java.rmi.server.RemoteCall;
 @RequestMapping("/cms/page")
 public class CmsPageController implements CmsPageControllerApi {
     @Autowired
-    private CmsPageService service;
+    private PageService service;
 
     @Override
     @GetMapping("/findPage/{page}/{size}")
@@ -40,7 +37,7 @@ public class CmsPageController implements CmsPageControllerApi {
     @Override
     @GetMapping("/get/{id}")
     public CmsPage get(@PathVariable("id") String id) {
-        return service.get(id);
+        return service.findByPageId(id);
     }
 
     @Override
@@ -53,5 +50,12 @@ public class CmsPageController implements CmsPageControllerApi {
     @DeleteMapping("/delete/{id}")
     public ResponseResult delete(@PathVariable("id") String id) {
         return service.delete(id);
+    }
+
+    @Override
+    @PostMapping("/postPage/{pageId}")
+    public ResponseResult postPage(@PathVariable("pageId") String pageId) {
+        service.postPage(pageId);
+        return new ResponseResult(CommonCode.SUCCESS);
     }
 }
